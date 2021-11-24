@@ -108,18 +108,21 @@ def callback():
     for i in range(no_event):
             event = decoded['events'][i]
             event_handle(event,json_line)
-    # เชื่อมต่อกับ dialogflow
+  
+# เชื่อมต่อกับ dialogflow
     #intent = decoded["queryResult"]["intent"]["displayName"] 
     #text = decoded['originalDetectIntentRequest']['payload']['data']['message']['text'] 
     #reply_token = decoded['originalDetectIntentRequest']['payload']['data']['replyToken']
     #id = decoded['originalDetectIntentRequest']['payload']['data']['source']['userId']
     #disname = line_bot_api.get_profile(id).display_name
     #reply(intent,text,reply_token,id,disname)
+    
     return '',200
 
 def reply(intent,text,reply_token,id,disname):
     text_message = TextSendMessage(text="ทดสอบ")
     line_bot_api.reply_message(reply_token,text_message)
+    
 def event_handle(event,json_line):
     try:
         userId = event['source']['userId']
@@ -141,13 +144,10 @@ def event_handle(event,json_line):
         replyObj = StickerSendMessage(package_id=str(1),sticker_id=str(sk_id))
         line_bot_api.reply_message(rtoken, replyObj)
         return ''
-
     
     
-  
-
-
-if msgType == "text":
+    
+  if msgType == "text":
         msg = str(event["message"]["text"])
         if msg == "สวัสดี":
             replyObj = TextSendMessage(text="จ้า สวัสดีด้วยจ้า")

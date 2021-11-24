@@ -147,7 +147,7 @@ def event_handle(event,json_line):
     
     
     
-  if msgType == "text":
+    if msgType == "text":
         msg = str(event["message"]["text"])
         if msg == "สวัสดี":
             replyObj = TextSendMessage(text="จ้า สวัสดีด้วยจ้า")
